@@ -40,9 +40,13 @@ for fname in images:
 cv2.destroyAllWindows()
 # Calibration
 ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
-print(ret)
+print(dist)
 print(mtx)
-# [[551.35925517   0.         248.33988363]
+
+#  320 * 2, 240 * 2
+
+# dist = [[-0.02357899  0.32398194 -0.01049933  0.00349942 -0.2899601 ]]
+# mtx =[[551.35925517   0.         248.33988363]
 #  [  0.         551.84937767 309.15983624]
 #  [  0.           0.           1.        ]]
 
