@@ -13,13 +13,18 @@ objp[:, :2] = np.mgrid[0:9, 0:7].T.reshape(-1, 2)
 # Arrays to store object points and image points from all the images.
 objpoints = []  # 3d point in real world space
 imgpoints = []  # 2d points in image plane.
+
+# input image in order calibration
 PATH = os.path.join(os.getcwd(), 'samples')
 
 images = os.listdir(PATH)
-W, H = 320 * 2, 240 * 2
+img = cv2.imread(os.path.join(PATH, images[0]))
+# get shape of image
+W, H, _ = img.shape
+# W, H = 320 * 2, 240 * 2
 for fname in images:
     img = cv2.imread(os.path.join(PATH, fname))
-    img = cv2.resize(img, (H, W))
+    img = cv2.resize(img, (H // 2, W // 2))
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Find the chess board corners
