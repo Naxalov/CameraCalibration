@@ -14,8 +14,12 @@ objp[:, :2] = np.mgrid[0:9, 0:7].T.reshape(-1, 2)
 objpoints = []  # 3d point in real world space
 imgpoints = []  # 2d points in image plane.
 
+# squear
+
+DIR_INPUT = 'samples/photo'
+
 # input image in order calibration
-PATH = os.path.join(os.getcwd(), 'samples')
+PATH = os.path.join(os.getcwd(), DIR_INPUT)
 
 images = os.listdir(PATH)
 img = cv2.imread(os.path.join(PATH, images[0]))
@@ -43,6 +47,8 @@ for fname in images:
         # time.sleep(3)
 
 cv2.destroyAllWindows()
+print(img.shape)
+
 # Calibration
 ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
 print(dist)
